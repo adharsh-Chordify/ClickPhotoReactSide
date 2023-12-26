@@ -1,0 +1,36 @@
+
+
+.temp{
+    height: 100vh ;
+    align-items: center;
+    justify-content: center;
+}
+.inputformdata{
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    gap: 25px;
+    
+}
+.loginrightside{
+   
+}
+.inputfield{
+    font-size: 25px;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+.registerButton{
+    font-size: 25px;
+}
+.inputfield:focus{
+    
+    box-shadow: none;
+ 
+}
+.error{
+    color: red;
+}
+
+
