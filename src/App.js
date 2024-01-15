@@ -7,6 +7,7 @@ import UploadImage from './UploadImage';
 import Homepage from './Homepage';
 
 import Edit from './Edit';
+import ForgotPassword from './ForgotPassword';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Route path='upload' element={<UploadImage></UploadImage>}></Route>
       <Route path='/' element={<Homepage></Homepage>}></Route>
       <Route path='edit/:id' element={<Edit></Edit>}></Route>
+      <Route path='forgotpassword' element={<ForgotPassword></ForgotPassword>}></Route>
     </Routes>
     
     </>

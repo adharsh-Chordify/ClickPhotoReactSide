@@ -1,10 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import instance from './baseUrl'
 import { DeletedContext, LoginDataContext, MypostContext } from './Contextshare'
 import Mypost from './Mypost'
 import { useNavigate } from 'react-router-dom'
 import Footer from './Footer'
 const baseURL = 'http://localhost:4001'
+
 
 
 
@@ -24,8 +27,7 @@ function UploadImage() {
   const {mypost,setmypost}=useContext(MypostContext)
   const{deletedContxt,setdeletedContxt}=useContext(DeletedContext)
 
-  const tokend = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiNTQ1M2QxYWEtZjMzMC00NzRhLThjMjItZjgyMWQ2NTQ1N2FhIiwiaWF0IjoxNzAzMTY5MzMwLCJleHAiOjE3MDMxODAxMzB9.ZJyz0pj0nscwjfs1LblyVL1lpop-aPNYXgNZyGkG_OU'
-  const uuid = "5453d1aa-f330-474a-8c22-f821d65457aa"
+  
   const formsubmit = async (e) => {
     e.preventDefault()
     if(!title){
@@ -47,7 +49,7 @@ function UploadImage() {
       const fileUpload = await instance.post('/adddata', formData, { headers: { token } })
       console.log(fileUpload.data.image);
       setPreview(`${baseURL}/uploads/${fileUpload.data.image}`)
-      alert(fileUpload.data.message)
+      toast.success(fileUpload.data.message)
       mypostApi()
       navigate('/') 
       console.log(preview);
@@ -144,7 +146,7 @@ function UploadImage() {
         <h2 className='text-center mt-3'>Choose To Upload</h2>
         <div className='col-lg-6 CreatePostLeft'> 
         
-           <img src='https://i.postimg.cc/gj8zTLVx/Work.jpg' className='w-75'></img>
+           <img src='https://i.postimg.cc/fR3fmg6c/3004553-removebg-preview.png' className='w-75'></img>
         </div>
         <div className='col-lg-6 CreatePostRight'> 
                    <form onSubmit={formsubmit}>
@@ -174,7 +176,7 @@ function UploadImage() {
      </div>
 
 
-   
+     <ToastContainer position="top-center" />
      
      
     </>

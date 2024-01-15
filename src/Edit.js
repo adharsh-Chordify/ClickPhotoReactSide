@@ -27,8 +27,7 @@ function Edit() {
   
   const {id}=useParams()
 
-  const tokend = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiNTQ1M2QxYWEtZjMzMC00NzRhLThjMjItZjgyMWQ2NTQ1N2FhIiwiaWF0IjoxNzAzMTY5MzMwLCJleHAiOjE3MDMxODAxMzB9.ZJyz0pj0nscwjfs1LblyVL1lpop-aPNYXgNZyGkG_OU'
-  const uuid = "5453d1aa-f330-474a-8c22-f821d65457aa"
+ 
   const formsubmit = async (e) => {
     e.preventDefault()
     if(!title){
@@ -50,7 +49,7 @@ function Edit() {
       const fileUpload = await instance.post('/updatepost', formData, { headers: { token } })
       console.log(fileUpload.data);
     //   setPreview(`${baseURL}/uploads/${fileUpload.data.image}`)
-      alert("Data ha been updated")
+      alert("Data has been updated")
          navigate('/upload') 
     //   console.log(preview);
     }
@@ -134,7 +133,7 @@ function Edit() {
         <h2 className='text-center mt-3'>Choose To Upload</h2>
         <div className='col-lg-6 CreatePostLeft'> 
         
-           <img src='https://i.postimg.cc/gj8zTLVx/Work.jpg' className='w-75'></img>
+           <img src='https://i.postimg.cc/ZnSbZRdf/2910088-removebg-preview.png' className='w-75'></img>
         </div>
         <div className='col-lg-6 CreatePostRight'> 
                    <form onSubmit={formsubmit}>

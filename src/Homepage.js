@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import './login.css'
+
 import instance from './baseUrl'
 import { useNavigate } from 'react-router-dom'
 import { LoginDataContext } from './Contextshare'
@@ -68,7 +68,7 @@ function Homepage() {
         {loginCheck?
         <>
           <h5 class="navbar-brand" >Welcome {sessionStorage.getItem('userName')}</h5> 
-          <button class="btn btn-success me-2" type="submit" onClick={()=>navigate('upload')}>Create Post</button>
+          <button class="btn btn-success me-2" type="submit" onClick={()=>navigate('upload')}>My Posts</button>
         </>
         
         :''
@@ -92,8 +92,8 @@ function Homepage() {
 {allData.length > 0 ? allData.map((i)=>(
   
 
-    <div className='homepagetemp '>
-    <div className="card t1 " style={{ width: "30rem" }}>
+    <div className='homepagetemp ' style={{display:"flex",flexDirection:"row",alignItems:"center"}}>
+    <div className="card t1  " style={{ width: "30rem" }}>
       <img src={`${baseURL}/uploads/${i.image}`} className="card-img-top " alt="..." />
       <div className="card-body">
         <p className="card-text">{i.caption}</p>

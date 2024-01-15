@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "./register.css"
 import * as yup from "yup";
 import {yupResolver} from "@hookform/resolvers/yup";
@@ -32,9 +34,10 @@ function Register() {
 
   return (
     <>
-     <div className='w-75 mx-auto temp  row'>
+     <div className='w-75 mx-auto temp1  row'>
+     <h1 className='text-center'>Register</h1>
           <div className='col-lg-6 loginrightside'> 
-          <h2 className='text-center'>Register</h2>
+          
              <img src='https://i.postimg.cc/8CYTkmwF/Data-security-05.jpg' className='w-75'></img>
           </div>
           <div className='col-lg-6'> 
@@ -59,17 +62,28 @@ function Register() {
                           try{
                             const registerData= await instance.post('/adduser',formData)
                            
-                            if(registerData){
+                            if(registerData.data.message=="User already exist please login to continue"){
                               console.log(registerData);
-                              alert(registerData.data.message);
-                              navigate('/login');
-                              reset();
+                              toast.success(registerData.data.message);
+                              setTimeout(() => {
+                                navigate('/login');
+                                reset(); 
+                              }, 2000);
+                             
+                            }
+                            else if(registerData.data.message=="User registered successfully"){
+                              toast.success(registerData.data.message);
+                              setTimeout(() => {
+                                navigate('/login');
+                                reset(); 
+                              }, 2000);
+                             
                             }
                            
                           }
                           catch(err){
                             const te=err.response.data.slice(30,)
-                            alert(te)
+                            toast.error(te)
                           }
                         }
                         else{
@@ -108,7 +122,7 @@ function Register() {
         </div>
 
        </div>
-      
+       <ToastContainer position="top-center" />
     </>
   )
 }
