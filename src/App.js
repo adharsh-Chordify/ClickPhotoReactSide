@@ -8,6 +8,7 @@ import Homepage from './Homepage';
 
 import Edit from './Edit';
 import ForgotPassword from './ForgotPassword';
+import ChatSide from './ChatSide';
 
 
 function App() {

@@ -4,10 +4,16 @@ import instance from './baseUrl'
 import { useNavigate } from 'react-router-dom'
 import { LoginDataContext } from './Contextshare'
 import Footer from './Footer'
+import { io } from 'socket.io-client'
+import Message from './Message'
+const socket=io.connect("http://localhost:4001")
+
 const baseURL='http://localhost:4001'
 
 function Homepage() {
   const navigate=useNavigate()
+  const[roomname,setRoomname]=useState("")
+  const[joinCheck,setjoinCheck]=useState('')
    const [allData,setallData]=useState([])
    const[loginCheck,setloginCheck] =useState('')
      const getall=async()=>{
@@ -40,7 +46,15 @@ function Homepage() {
     },[loggedData])
  
 
- 
+    const joinRoom=async(e)=>{
+      e.preventDefault()
+      
+      await setRoomname("temp")
+      await socket.emit("join_room","temp")
+      await setjoinCheck("true")
+      
+
+  }
     
 
 
@@ -68,6 +82,7 @@ function Homepage() {
         {loginCheck?
         <>
           <h5 class="navbar-brand" >Welcome {sessionStorage.getItem('userName')}</h5> 
+          <button class="btn btn-success me-2" type="submit" onClick={joinRoom}>Join the chat</button>
           <button class="btn btn-success me-2" type="submit" onClick={()=>navigate('upload')}>My Posts</button>
         </>
         
@@ -83,7 +98,7 @@ function Homepage() {
 }
 
         
-      
+
       </form>
     </div>
   </div>
@@ -104,7 +119,10 @@ function Homepage() {
 
   )):<h3>No data Found Sorry....</h3>
 }
-
+{joinCheck ?
+    <Message socket={socket} username={sessionStorage.getItem('userName')} roomname={roomname} joinCheck={joinCheck}></Message>
+    : ''
+}
 
 <Footer></Footer>
     
